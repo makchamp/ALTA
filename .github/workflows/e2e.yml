@@ -44,19 +44,21 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Npm install
-      working-directory: client
-      env:
-        NODE_ENV: test
-      run: |         
-          npm i
-          npm i -g @angular/cli
-
     - name: Run e2e tests
       working-directory: client
       env:
         NODE_ENV: test
       run: |
-          node ./node_modules/protractor/bin/webdriver-manager update     
-          npm run e2e --browsers=ChromeHeadlessCI --headless --disable-gpu --no-sandbox --disable-extensions --disable-dev-shm-usage
+        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+        apt-get -qq update -y
+        apt-get -qq install -y --allow-unauthenticated google-chrome-stable xvfb gtk2-engines-pixbuf xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps default-jre
+        Xvfb :0 -ac -screen 0 1024x768x24 &
+        export DISPLAY=:99
+        ln -s ../../../native_client/app/core/ web_client/src/app/core
+        cd web_client
+        npm install -silent --unsafe-perm -g @angular/cli@1.1.2
+        npm install --silent
+        node ./node_modules/.bin/webdriver-manager update
+        ng e2e --protractorConfig=protractor.conf.js
 

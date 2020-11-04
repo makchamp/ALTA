@@ -17,8 +17,8 @@ exports.config = {
     browserName: 'chrome'
   },
   chromeOptions: {
-    args: ['--headless', '--no-sandbox', '--disable-dev-shm-usage'],
-  },
+    args: [ '--headless', '--no-sandbox', '--disable-gpu']
+   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
