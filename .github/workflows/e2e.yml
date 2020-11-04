@@ -52,5 +52,5 @@ jobs:
         npm install -g @angular/cli
         npm install
         node ./node_modules/.bin/webdriver-manager update
-        ng e2e --protractorConfig=protractor.conf.js
+        ng e2e
 
