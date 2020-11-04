@@ -57,5 +57,5 @@ jobs:
       env:
         NODE_ENV: test
       run: |         
-          npm run e2e --browsers=ChromeHeadlessCI
+          npm run e2e --browsers=ChromeHeadlessCI --headless --disable-gpu --no-sandbox --disable-extensions --disable-dev-shm-usage
 
