@@ -57,7 +57,6 @@ jobs:
       env:
         NODE_ENV: test
       run: |
-          npm install -g webdriver-manager protractor
-          webdriver-manager update     
-          npm run e2e --browsers=ChromeHeadlessCI --headless --disable-gpu --no-sandbox --disable-extensions --disable-dev-shm-usage --webdriverUpdate=false
+          node ./node_modules/protractor/bin/webdriver-manager update     
+          npm run e2e --browsers=ChromeHeadlessCI --headless --disable-gpu --no-sandbox --disable-extensions --disable-dev-shm-usage
 
