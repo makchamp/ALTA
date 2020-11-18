@@ -1,7 +1,5 @@
 name: build_server
 
-on: [push, pull_request]
-
 jobs:
   build:
 
